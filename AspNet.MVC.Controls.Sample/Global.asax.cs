@@ -1,3 +1,4 @@
+using DataTables.MVC.Control.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace AspNet.MVC.Controls.Sample
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(AjaxDataTableRequestModel), new AjaxDataTableRequestModelBinder());
+
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }

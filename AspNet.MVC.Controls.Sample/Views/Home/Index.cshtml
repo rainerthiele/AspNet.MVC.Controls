@@ -3,29 +3,36 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <h1>Ajax Controls</h1>
+    <p class="lead">This site simply exists to test the ajax drop down and ajax data table. It does not even show further explanations. If you are looking for
+    a documentation look at my web site.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h3>AjaxDropDowns.MVC.Control</h3>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            The AjaxDropDowns.MVC.Control is a simple drop down control which reads the option list from a controller action. Actually there are two versions: 
+            the AjaxDropDown and the SchriptDropDown. What is the diffrence? The AjaxDropDown makes a real ajax call to the server after the html of the page is 
+            rendered. The ScriptDropDown calls a controller action during rendering and put the options in a javascript variable from which the drop down is filled.
+            Means no ajax call, which may lead to better performance.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="@Url.Action("Index", "DropDown")">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h3>DataTables.MVC.Control</h3>
+        <p>
+            The Datatables.MVC.Control relies on the javascript library datatables.net (<a href="https://www.datatables.net/" target="_blank">https://www.datatables.net/</a>).
+            In my opinion it is a higly sophisticated piece of javascript to auto-generate searchable, sortable and pagable datatables. But as a ASP.Net developer you may not 
+            want to create tables and javascript configurations by hand. That is why I created a control for it.
+        </p>
+        <p><a class="btn btn-secondary" href="@Url.Action("Index", "DataTable")">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h3>DataTables.MVC.Control<br /><small>(server-side)</small></h3>
+        <p>Even though datatables.net can handle thouthands of records you may come to a point where your would like to perform searching, sorting and paging on the server side. Of course
+        this is possible.</p>
+        <p><a class="btn btn-secondary" href="@Url.Action("Index", "DataTableServer")">Learn more &raquo;</a></p>
     </div>
 </div>

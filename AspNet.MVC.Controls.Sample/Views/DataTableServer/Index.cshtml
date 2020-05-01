@@ -1,0 +1,36 @@
+﻿@using AspNet.MVC.Controls.Sample.Models
+@using DataTables.MVC.Control.Models
+@{
+    ViewBag.Title = "AjaxDataTable";
+}
+
+<h2>AjaxDataTable <small>(server-side)</small></h2>
+
+<p>
+    This is actually the sama AjaxDataTable html helper method. The only diffrence is that the table configuration has set the serverside option set to true. The each click (for sorting, 
+    paging, etc.) makes a new ajax call to the server, passing in the parameters for sorting, which page, how many records and so on. You have to take care for the fullfilment of the desired
+    behaviour yourself. This is actually meant for large data sources.<br /><br />Apart from that the possibilities for configuration and customization are completely the same.
+</p>
+
+@(Html.Table<ArticleViewModel>(new TableConfiguration() { AjaxReadUrl = Url.Action("List"), ServerSide=true,
+}, new { style = "width:100%" })
+                    .Column(c => c.Id)
+                    .Column(c => c.Name)
+                    .NumericColumn(c => c.Price, new ColumnConfiguration() { ClassName = "text-right" }, new NumericColumnConfiguration() { DecimalPlaces = 2, DecimalSign = ",", ThousandsSeperator = ".", ValueAppendix = " €" })
+                    .DateTimeColumn(c => c.ReleaseDate, new DateTimeColumnConfiguration("DD.MM.YYYY"))
+                    .LinkColumn(c => c.Id, new ColumnConfiguration() { Title = "Link" }, new LinkConfiguration()
+                    {
+                        CssClass = "test",
+                        InnerHtml = "<span>{Name} ({Id})</span>",
+                        LinkType = LinkType.Script,
+                        TagType =  TagType.Anchor,
+                        Target = "testFunction({Name},{Id})"
+
+                    })
+                .Render())
+
+<script>
+    function testFunction(a, b) {
+        alert(a + " " + b);
+    }
+</script>

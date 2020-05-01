@@ -1,0 +1,39 @@
+﻿@using AspNet.MVC.Controls.Sample.Models
+@using DataTables.MVC.Control.Models
+@{
+    ViewBag.Title = "AjaxDataTable";
+}
+
+<h2>AjaxDataTable</h2>
+
+<p>
+    The AjaxDataTable provides a simple way to render a data table via html helper method. It is a genecric helper method which renders the table fpr a given data type. You can add a table configuration
+    which for example contains the read url for the data. Then you define the columns fluently, each with or without specific configuration. There are also certain column types for certain use cases,
+    such as numeric columns, date or time columns, or link columns. If none of theses is sufficiant for you, you can pass the name of a javascript render function and render the column exactly as you
+    like.<br /><br />The control does not cover all options of the original datatables.net plug-in. But the most important use cases are covered. And, for whatever it is good, you can even pass a 
+    'false' into the render method. Then you get just the table structure with the configuration in HTML5 format (data attributes), but no javascript. Then you can write you own javascript code to
+    initialize and configure the table.
+</p>
+
+@(Html.Table<ArticleViewModel>(new TableConfiguration() { AjaxReadUrl = Url.Action("List"),
+}, new { style = "width:100%" })
+                    .Column(c => c.Id)
+                    .Column(c => c.Name)
+                    .NumericColumn(c => c.Price, new ColumnConfiguration() { ClassName = "text-right" }, new NumericColumnConfiguration() { DecimalPlaces = 2, DecimalSign = ",", ThousandsSeperator = ".", ValueAppendix = " €" })
+                    .DateTimeColumn(c => c.ReleaseDate, new DateTimeColumnConfiguration("DD.MM.YYYY"))
+                    .LinkColumn(c => c.Id, new ColumnConfiguration() { Title = "Link" }, new LinkConfiguration()
+                    {
+                        CssClass = "test",
+                        InnerHtml = "<span>{Name} ({Id})</span>",
+                        LinkType = LinkType.Script,
+                        TagType =  TagType.Anchor,
+                        Target = "testFunction({Name},{Id})"
+
+                    })
+                .Render())
+
+<script>
+    function testFunction(a, b) {
+        alert(a + " " + b);
+    }
+</script>

@@ -20,10 +20,17 @@ namespace AspNet.MVC.Controls.Sample
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/moment.js",
+                      "~/Scripts/datatables.js",
+                      "~/Scripts/datatables.bootstrap4.js",
+                      "~/Scripts/datatables.datetime-moment.js",
+                      "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/datatables.css",
+                      "~/Content/datatables.bootstrap4.css",
                       "~/Content/site.css"));
         }
     }

@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Resources/AjaxDropDownListInitFunction.es5.js",
+    "inputFile": "Resources/AjaxDropDownListInitFunction.js"
+  },
+  {
+    "outputFile": "Resources/ScriptDropDownListInitFunction.es5.js",
+    "inputFile": "Resources/ScriptDropDownListInitFunction.js"
+  }
+]
