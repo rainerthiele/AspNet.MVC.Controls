@@ -86,6 +86,7 @@
     <Compile Include="ScriptDropDownList.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AjaxDopDowns.MVC.Control.nuspec" />
     <None Include="app.config" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">

@@ -96,6 +96,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <None Include="DataTables.MVC.Control.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +106,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\datatables.css" />
+    <Content Include="Content\datatables.min.css" />
     <Content Include="Resources\AjaxDataTableInitFunction.es5.js">
       <DependentUpon>AjaxDataTableInitFunction.js</DependentUpon>
     </Content>
@@ -112,6 +115,14 @@
       <DependentUpon>AjaxDataTableInitFunction.es5.js</DependentUpon>
     </Content>
     <Content Include="Resources\AjaxDataTableInitFunction.js" />
+    <Content Include="Scripts\datatables.datetime-moment.js" />
+    <Content Include="Scripts\datatables.js" />
+    <Content Include="Scripts\datatables.min.js" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

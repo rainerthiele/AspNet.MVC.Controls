@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<package  xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>    
+    <id>DataTables.MVC.Control</id>
+    <version>1.0.5</version>
+    <title>DataTables.MVC.Control</title>
+    <authors>Rainer Thiele</authors>
+    <owners>rainerthiele</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/rainerthiele/AspNet.MVC.Controls</projectUrl>
+    <!-- <iconUrl></iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A html helper to create sortable, searchable, and pageable data tables filled via ajax request, based on the datatables.net javascript plugin.</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags></tags>
+    <dependencies>
+      <dependency id="Antlr" version="3.4.1.9004" />
+      <dependency id="Microsoft.AspNet.Razor" version="3.2.7" />
+      <dependency id="Microsoft.AspNet.Web.Optimization" version="1.1.3" />
+      <dependency id="Microsoft.AspNet.WebPages" version="3.2.7" />
+      <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+      <dependency id="Newtonsoft.Json" version="5.0.4" />
+      <dependency id="WebGrease" version="1.5.2" />
+      <!-- <dependency id="bootstrap" version="4.4.1" /> -->
+      <dependency id="jQuery" version="3.5.0.1" />
+      <dependency id="Moment.js" version="2.24.0" />
+    </dependencies>
+    <summary></summary>
+  </metadata>
+	<!-- <files>
+    <file src="Content\datatables.css" target="Content" />
+    <file src="Content\datatables.min.css" target="Content" />
+    <file src="Scripts\datatables.datetime-moment.js" target="Scripts" />
+    <file src="Scripts\datatables.js" target="Scripts" />
+    <file src="Scripts\datatables.min.js" target="Scripts" />
+  </files>-->
+</package>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0"?>
+<package  xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>    
+    <id>SwitchLanguage.MVC.Helper</id>
+    <version>1.0.0</version>
+    <title>SwitchLanguage.MVC.Helper</title>
+    <authors>Rainer Thiele</authors>
+    <owners>rainerthiele</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/rainerthiele/AspNet.MVC.Controls</projectUrl>
+    <!-- <iconUrl></iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A url helper to create links to change your websites language and an action filter to inject the language into the thread current UI culture.</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags></tags>
+    <dependencies>
+    <!--  <dependency id="Antlr" version="3.4.1.9004" />
+      <dependency id="Microsoft.AspNet.Razor" version="3.2.7" />
+      <dependency id="Microsoft.AspNet.Web.Optimization" version="1.1.3" />
+      <dependency id="Microsoft.AspNet.WebPages" version="3.2.7" />
+      <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+      <dependency id="Newtonsoft.Json" version="5.0.4" />
+      <dependency id="WebGrease" version="1.5.2" /> -->
+    </dependencies>
+    <summary></summary>
+  </metadata>
+	<!-- <files>
+    <file src="Content\datatables.css" target="Content" />
+    <file src="Content\datatables.min.css" target="Content" />
+    <file src="Scripts\datatables.datetime-moment.js" target="Scripts" />
+    <file src="Scripts\datatables.js" target="Scripts" />
+    <file src="Scripts\datatables.min.js" target="Scripts" />
+  </files>-->
+</package>

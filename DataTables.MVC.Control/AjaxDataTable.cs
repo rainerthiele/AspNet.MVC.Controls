@@ -10,32 +10,32 @@ using System.Web.Routing;
 
 namespace DataTables.MVC.Control
 {
-    public static class AjaxDataTable
+    public static class AjaxDataTableHelper
     {
-        public static TableBuilder<TModel> Table<TModel>(this HtmlHelper htmlHelper, TableConfiguration config, object htmlAttributes) where TModel : class, new()
+        public static TableBuilder<TModel> AjaxDataTable<TModel>(this HtmlHelper htmlHelper, TableConfiguration config, object htmlAttributes) where TModel : class, new()
         {
             var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
-            return Table<TModel>(htmlHelper, config, attributes);
+            return AjaxDataTable<TModel>(htmlHelper, config, attributes);
         }
 
-        public static TableBuilder<TModel> Table<TModel>(this HtmlHelper htmlHelper, string readUrl, object htmlAttributes) where TModel : class, new()
+        public static TableBuilder<TModel> AjaxDataTable<TModel>(this HtmlHelper htmlHelper, string readUrl, object htmlAttributes) where TModel : class, new()
         {
             var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
-            return Table<TModel>(htmlHelper, new TableConfiguration() { AjaxReadUrl = readUrl }, attributes);
+            return AjaxDataTable<TModel>(htmlHelper, new TableConfiguration() { AjaxReadUrl = readUrl }, attributes);
         }
 
-        public static TableBuilder<TModel> Table<TModel>(this HtmlHelper htmlHelper, TableConfiguration config) where TModel : class, new()
+        public static TableBuilder<TModel> AjaxDataTable<TModel>(this HtmlHelper htmlHelper, TableConfiguration config) where TModel : class, new()
         {
-            return Table<TModel>(htmlHelper, config, null);
+            return AjaxDataTable<TModel>(htmlHelper, config, null);
         }
 
-        public static TableBuilder<TModel> Table<TModel>(this HtmlHelper htmlHelper, string readUrl) where TModel : class, new()
+        public static TableBuilder<TModel> AjaxDataTable<TModel>(this HtmlHelper htmlHelper, string readUrl) where TModel : class, new()
         {
-            return Table<TModel>(htmlHelper, new TableConfiguration() { AjaxReadUrl = readUrl }, null);
+            return AjaxDataTable<TModel>(htmlHelper, new TableConfiguration() { AjaxReadUrl = readUrl }, null);
         }
 
 
-        private static TableBuilder<TModel> Table<TModel>(HtmlHelper htmlHelper, TableConfiguration config, RouteValueDictionary htmlAttributes) where TModel : class, new()
+        private static TableBuilder<TModel> AjaxDataTable<TModel>(HtmlHelper htmlHelper, TableConfiguration config, RouteValueDictionary htmlAttributes) where TModel : class, new()
         {
             HtmlHelper<TModel> modelHtmlHelper = GetHtmlHelperForModelType<TModel>(htmlHelper.ViewContext, htmlHelper.ViewDataContainer.ViewData, htmlHelper.RouteCollection);
             TableBuilder<TModel> tableBuilder = new TableBuilder<TModel>(modelHtmlHelper, config, htmlAttributes);
