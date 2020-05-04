@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AjaxDopDowns.MVC.Control.ActionResults;
+using AjaxDropDowns.MVC.Control.ActionResults;
 
 namespace AspNet.MVC.Controls.Sample.Controllers
 {

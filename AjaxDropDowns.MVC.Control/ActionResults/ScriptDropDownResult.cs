@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AjaxDopDowns.MVC.Control.ActionResults
+namespace AjaxDropDowns.MVC.Control.ActionResults
 {
     public class ScriptDropDownResult : ActionResult
     {

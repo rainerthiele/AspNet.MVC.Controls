@@ -12,7 +12,7 @@
     behaviour yourself. This is actually meant for large data sources.<br /><br />Apart from that the possibilities for configuration and customization are completely the same.
 </p>
 
-@(Html.Table<ArticleViewModel>(new TableConfiguration() { AjaxReadUrl = Url.Action("List"), ServerSide=true,
+@(Html.AjaxDataTable<ArticleViewModel>(new TableConfiguration() { AjaxReadUrl = Url.Action("List"), ServerSide=true,
 }, new { style = "width:100%" })
                     .Column(c => c.Id)
                     .Column(c => c.Name)

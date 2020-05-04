@@ -10,7 +10,7 @@ using System.Web.Mvc.Html;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace AjaxDopDowns.MVC.Control
+namespace AjaxDropDowns.MVC.Control
 {
     // @Html.AjaxDropDownListFor(m => m.Id, "1234", "/EmployeeGroup/List", new SelectListItem() { Text = "", Value = "" } )
 

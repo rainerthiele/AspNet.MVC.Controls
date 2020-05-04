@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AjaxDopDowns.MVC.Control.Resources {
+namespace AjaxDropDowns.MVC.Control.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AjaxDopDowns.MVC.Control.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AjaxDopDowns.MVC.Control.Resources.Scripts", typeof(Scripts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AjaxDropDowns.MVC.Control.Resources.Scripts", typeof(Scripts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

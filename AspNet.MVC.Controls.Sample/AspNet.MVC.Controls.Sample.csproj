@@ -312,9 +312,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AjaxDopDowns.MVC.Control\AjaxDopDowns.MVC.Control.csproj">
+    <ProjectReference Include="..\AjaxDropDowns.MVC.Control\AjaxDropDowns.MVC.Control.csproj">
       <Project>{ed19e4a8-5d53-4b18-a9f8-cfaa60568000}</Project>
-      <Name>AjaxDopDowns.MVC.Control</Name>
+      <Name>AjaxDropDowns.MVC.Control</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataTables.MVC.Control\DataTables.MVC.Control.csproj">
       <Project>{87e243b2-d391-47ee-9e9c-0798a322f3a0}</Project>

@@ -15,7 +15,7 @@
     initialize and configure the table.
 </p>
 
-@(Html.Table<ArticleViewModel>(new TableConfiguration() { AjaxReadUrl = Url.Action("List"),
+@(Html.AjaxDataTable<ArticleViewModel>(new TableConfiguration() { AjaxReadUrl = Url.Action("List"),
 }, new { style = "width:100%" })
                     .Column(c => c.Id)
                     .Column(c => c.Name)
