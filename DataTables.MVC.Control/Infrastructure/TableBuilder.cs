@@ -11,6 +11,10 @@ using System.Web.Routing;
 
 namespace DataTables.MVC.Control.Infrastructure
 {
+    /// <summary>
+    /// Creates the html code and scripts for the data table. Provides methods to add columns to the table and render the html.
+    /// </summary>
+    /// <typeparam name="TModel">The type of the data model the tablle is built of.</typeparam>
     public class TableBuilder<TModel>
     {
         private List<ColumnBuilder> columnBuilders;
@@ -26,6 +30,9 @@ namespace DataTables.MVC.Control.Infrastructure
             this.columnBuilders = new List<ColumnBuilder>();
         }
 
+        /// <summary>
+        /// <see cref="LinkColumn{TProperty}(Expression{Func{TModel, TProperty}}, ColumnConfiguration, LinkConfiguration)"/>
+        /// </summary>
         public TableBuilder<TModel> LinkColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, LinkConfiguration linkConfiguration)
         {
             columnBuilders.Add(new ColumnBuilder(new ColumnConfiguration() { Orderable = false }, GetMemberName(expression), linkConfiguration));
@@ -33,6 +40,14 @@ namespace DataTables.MVC.Control.Infrastructure
             return this;
         }
 
+        /// <summary>
+        /// Adds a link column to the data table.
+        /// </summary>
+        /// <typeparam name="TProperty">The data property of the model.</typeparam>
+        /// <param name="expression">An expression to identify the column value.</param>
+        /// <param name="configuration"><see cref="ColumnConfiguration"/></param>
+        /// <param name="linkConfiguration"><see cref="LinkConfiguration"/></param>
+        /// <returns></returns>
         public TableBuilder<TModel> LinkColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, ColumnConfiguration configuration, LinkConfiguration linkConfiguration)
         {
             columnBuilders.Add(new ColumnBuilder(configuration, GetMemberName(expression), linkConfiguration));
@@ -40,49 +55,79 @@ namespace DataTables.MVC.Control.Infrastructure
             return this;
         }
 
-        public TableBuilder<TModel> DateTimeColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, DateTimeColumnConfiguration dateTimeConfiguration)
+        /// <summary>
+        /// <see cref="DateTimeColumn{TProperty}(Expression{Func{TModel, TProperty}}, ColumnConfiguration, DateTimeConfiguration)"/>
+        /// </summary>
+        public TableBuilder<TModel> DateTimeColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, DateTimeConfiguration dateTimeConfiguration)
         {
             columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, new ColumnConfiguration()), GetMemberName(expression), dateTimeConfiguration));
 
             return this;
         }
 
-        public TableBuilder<TModel> DateTimeColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, ColumnConfiguration configuration, DateTimeColumnConfiguration dateTimeConfiguration)
+        /// <summary>
+        /// Adds a link column to the data table.
+        /// </summary>
+        /// <typeparam name="TProperty">The data property of the model.</typeparam>
+        /// <param name="expression">An expression to identify the column value.</param>
+        /// <param name="configuration"><see cref="ColumnConfiguration"/></param>
+        /// <param name="dateTimeConfiguration"><see cref="DateTimeConfiguration"/></param>
+        /// <returns></returns>
+        public TableBuilder<TModel> DateTimeColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, ColumnConfiguration configuration, DateTimeConfiguration dateTimeConfiguration)
         {
             columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, configuration), GetMemberName(expression), dateTimeConfiguration));
 
             return this;
         }
 
+        /// <summary>
+        /// <see cref="NumericColumn{TProperty}(Expression{Func{TModel, TProperty}}, ColumnConfiguration, NumericConfiguration)"/>
+        /// </summary>
         public TableBuilder<TModel> NumericColumn<TProperty>(Expression<Func<TModel, TProperty>> expression)
         {
-            columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, new ColumnConfiguration()), GetMemberName(expression), new NumericColumnConfiguration()));
+            columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, new ColumnConfiguration()), GetMemberName(expression), new NumericConfiguration()));
 
             return this;
         }
 
+        /// <summary>
+        /// <see cref="NumericColumn{TProperty}(Expression{Func{TModel, TProperty}}, ColumnConfiguration, NumericConfiguration)"/>
+        /// </summary>
         public TableBuilder<TModel> NumericColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, ColumnConfiguration configuration)
         {
-            columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, configuration), GetMemberName(expression), new NumericColumnConfiguration()));
+            columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, configuration), GetMemberName(expression), new NumericConfiguration()));
 
             return this;
         }
 
-        public TableBuilder<TModel> NumericColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, NumericColumnConfiguration numericConfiguration)
+        /// <summary>
+        /// <see cref="NumericColumn{TProperty}(Expression{Func{TModel, TProperty}}, ColumnConfiguration, NumericConfiguration)"/>
+        /// </summary>
+        public TableBuilder<TModel> NumericColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, NumericConfiguration numericConfiguration)
         {
             columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, new ColumnConfiguration()), GetMemberName(expression), numericConfiguration));
 
             return this;
         }
 
-        public TableBuilder<TModel> NumericColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, ColumnConfiguration configuration, NumericColumnConfiguration numericConfiguration)
+        /// <summary>
+        /// Adds a link column to the data table.
+        /// </summary>
+        /// <typeparam name="TProperty">The data property of the model.</typeparam>
+        /// <param name="expression">An expression to identify the column value.</param>
+        /// <param name="configuration"><see cref="ColumnConfiguration"/></param>
+        /// <param name="numericConfiguration"><see cref="NumericConfiguration"/> </param>
+        /// <returns></returns>
+        public TableBuilder<TModel> NumericColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, ColumnConfiguration configuration, NumericConfiguration numericConfiguration)
         {
             columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, configuration), GetMemberName(expression), numericConfiguration));
 
             return this;
         }
 
-
+        /// <summary>
+        /// <see cref="Column{TProperty}(Expression{Func{TModel, TProperty}}, ColumnConfiguration, string)"/>
+        /// </summary>
         public TableBuilder<TModel> Column<TProperty>(Expression<Func<TModel, TProperty>> expression, string renderFunction = null)
         {
             columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, new ColumnConfiguration()), GetMemberName(expression), renderFunction));
@@ -90,6 +135,15 @@ namespace DataTables.MVC.Control.Infrastructure
             return this;
         }
 
+        /// <summary>
+        /// Adds a simple text column to the data table.
+        /// </summary>
+        /// <typeparam name="TProperty">The data property of the model.</typeparam>
+        /// <param name="expression">An expression to identify the column value.</param>
+        /// <param name="configuration"><see cref="ColumnConfiguration"/></param>
+        /// <param name="renderFunction">The name of a JavaScript function that controls the output of the value. If no function is specified, the value is simply output as a string. If a name is given, only the name needs to be 
+        /// given, without parentheses.The fragment "(data, type, row, meta)" is always appended to the name, so that these four parameters are available in the JavaScript function.</param>
+        /// <returns></returns>
         public TableBuilder<TModel> Column<TProperty>(Expression<Func<TModel, TProperty>> expression, ColumnConfiguration configuration, string renderFunction = null)
         {
             columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, configuration), GetMemberName(expression), renderFunction));
@@ -97,6 +151,11 @@ namespace DataTables.MVC.Control.Infrastructure
             return this;
         }
 
+        /// <summary>
+        /// Redenders the data table.
+        /// </summary>
+        /// <param name="withScript">If set to false, no javascript will be created (optional).</param>
+        /// <returns></returns>
         public IHtmlString Render(bool withScript = true)
         {
             bool mustRenderInitFunction = false;

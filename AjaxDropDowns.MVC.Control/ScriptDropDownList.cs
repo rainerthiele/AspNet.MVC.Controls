@@ -14,30 +14,56 @@ namespace AjaxDropDowns.MVC.Control
 {
     // @Html.ScriptDropDownListFor(m => m.Id, "/EmployeeGroup/List", new SelectListItem() { Text = "", Value = "" } )
 
+    /// <summary>
+    /// A html helper to create drop down boxes which get their options via a controller action.
+    /// </summary>
     public static class ScriptDropDownList
     {
+        /// <summary>
+        ///  <see cref="ScriptDropDownList.ScriptDropDownListFor{TModel, TProperty}(HtmlHelper{TModel}, Expression{Func{TModel, TProperty}}, string, SelectListItem, object)"/>
+        /// </summary>  
         public static IHtmlString ScriptDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl, object htmlAttributes)
         {
             var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
             return ScriptDropDownListFor(htmlHelper, expression, readUrl, null, attributes);
         }
 
+        /// <summary>
+        ///  <see cref="ScriptDropDownList.ScriptDropDownListFor{TModel, TProperty}(HtmlHelper{TModel}, Expression{Func{TModel, TProperty}}, string, SelectListItem, object)"/>
+        /// </summary>  
         public static IHtmlString ScriptDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl)
         {
             return ScriptDropDownListFor(htmlHelper, expression, readUrl, null, null);
         }
 
+        /// <summary>
+        /// Creates a drop down box which gets its options via a controller action.
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="htmlHelper">A reference to the html helper.</param>
+        /// <param name="expression">An expression to identify the value from the model.</param>
+        /// <param name="readUrl">An url to read the drop down options from. The return of the url must be an ActionResult of type <see cref="ActionResults.ScriptDropDownResult"/>.</param>
+        /// <param name="optionItem">A <c>SelectListItem</c>, which contains the first entry in the options list (e.g. "Please select").</param>
+        /// <param name="htmlAttributes">Html attributes to be added to the drop down.</param>
+        /// <returns></returns>
         public static IHtmlString ScriptDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl, SelectListItem optionItem, object htmlAttributes)
         {
             var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
             return ScriptDropDownListFor(htmlHelper, expression, readUrl, optionItem, attributes);
         }
 
+        /// <summary>
+        ///  <see cref="ScriptDropDownList.ScriptDropDownListFor{TModel, TProperty}(HtmlHelper{TModel}, Expression{Func{TModel, TProperty}}, string, SelectListItem, object)"/>
+        /// </summary>  
         public static IHtmlString ScriptDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl, SelectListItem optionItem)
         {
             return ScriptDropDownListFor(htmlHelper, expression, readUrl, optionItem, null);
         }
 
+        /// <summary>
+        ///  <see cref="ScriptDropDownList.ScriptDropDownListFor{TModel, TProperty}(HtmlHelper{TModel}, Expression{Func{TModel, TProperty}}, string, SelectListItem, object)"/>
+        /// </summary>  
         public static IHtmlString ScriptDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl, SelectListItem optionItem, RouteValueDictionary htmlAttributes)
         {
             if (htmlHelper.ViewContext.HttpContext.Items["ScriptDropDownListInitReadUrls"] == null)

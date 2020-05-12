@@ -9,20 +9,43 @@ using WebApplication5.HtmlExtensions.Infrastructure;
 
 namespace DataTables.MVC.Control.Models
 {
+    /// <summary>
+    /// Contains the configuration for the display and behavior of a column.
+    /// </summary>
     public class ColumnConfiguration
     {
+        /// <summary>
+        /// A name of a CSS clas which is added to the table cells (td tags).
+        /// (optional)
+        /// </summary>
         [Html5Data("class-name")]
         public string ClassName { get; set; }
 
+        /// <summary>
+        /// A parameter that determines whether this column is sortable.
+        /// Default value: true
+        /// </summary>
         [Html5Data("orderable")]
         public bool Orderable { get; set; }
 
+        /// <summary>
+        /// A parameter that determines whether this column is searchable.
+        /// Default value: true
+        /// </summary>
         [Html5Data("searchable")]
         public bool Searchable { get; set; }
 
+        /// <summary>
+        /// Sets the column heading. If nothing is specified here, the heading is determined via the display attribute of the property of the model.
+        /// (optional)
+        /// </summary>
         [Html5Data("title")]
         public string Title { get; set; }
 
+        /// <summary>
+        /// A parameter that determines whether this column is visible.
+        /// Default value: true
+        /// </summary>
         [Html5Data("visible")]
         public bool Visible { get; set; }
 
@@ -33,6 +56,9 @@ namespace DataTables.MVC.Control.Models
             Visible = true;
         }
 
+        /// <summary>
+        /// Converts the settings into Html data attributes. This method is only for internal purposes.
+        /// </summary>
         public RouteValueDictionary ToHtml5Data()
         {
             RouteValueDictionary result = new RouteValueDictionary();
@@ -67,25 +93,56 @@ namespace DataTables.MVC.Control.Models
 
     }
 
-    public class NumericColumnConfiguration
+    /// <summary>
+    /// Contains the configuration for the display of a column with numerical values.
+    /// </summary>
+    public class NumericConfiguration
     {
+        /// <summary>
+        /// Sets the thousands separator.
+        /// Default value: . (dot)
+        /// </summary>
         public string ThousandsSeperator { get; set; }
+
+        /// <summary>
+        /// Sets the decimal separator.
+        /// Default value: , (comma)
+        /// </summary>
         public string DecimalSign { get; set; }
+
+        /// <summary>
+        /// Specifies the number of decimal places.
+        /// Default value: 0 (no decimal places)
+        /// </summary>
         public int DecimalPlaces { get; set; }
+
+        /// <summary>
+        /// A value that is inserted after the actual data value (e.g. a currency symbol).
+        /// </summary>
         public string ValueAppendix { get; set; }
+
+        /// <summary>
+        /// A value that is inserted before the actual data value (e.g. a currency symbol).
+        /// </summary>
         public string ValuePrependix { get; set; }
 
-        public NumericColumnConfiguration()
+        public NumericConfiguration()
         {
             ThousandsSeperator = ".";
             DecimalSign = ",";
         }
     }
 
-    public class DateTimeColumnConfiguration
+    /// <summary>
+    /// Contains the configuration for the display of a column with date or time values.
+    /// </summary>
+    public class DateTimeConfiguration
     {
+        /// <summary>
+        /// Specifies the date and time format of the column. Note: This entry must be in a format valid for moment.js.
+        /// </summary>
         public string DateTimeFormat { get; set; }
-        public DateTimeColumnConfiguration(string dateTimeFormat)
+        public DateTimeConfiguration(string dateTimeFormat)
         {
             DateTimeFormat = dateTimeFormat;
         }
@@ -104,15 +161,41 @@ namespace DataTables.MVC.Control.Models
         Button
     }
 
+
+    /// <summary>
+    /// Contains the configuration for the display and the content of a column with a link.
+    /// </summary>
     public class LinkConfiguration
     {
+        /// <summary>
+        /// Specifies the text to be linked. In this text, placeholders in curly brackets can be used to reference values from the data record.
+        /// </summary>
         public string InnerHtml { private get; set; }
+
+        /// <summary>
+        /// A Css class name which is added to the link (to the button resp. a tag, optional).
+        /// </summary>
         public string CssClass { get; set; }
+
+        /// <summary>
+        /// The javascript function or url to be linked. In this text, placeholders in curly brackets can be used to reference values from the data record.
+        /// </summary>
         public string Target { get; set; }
+
+        /// <summary>
+        /// A parameter that determines whether the link should be a script or a url.
+        /// </summary>
         public LinkType LinkType { get; set; }
+
+        /// <summary>
+        /// A parameter that determines whether the link is created as button or a tag.
+        /// </summary>
         public TagType TagType { get; set; }
 
-        public string ResolvedTarget(string rowPrefix)
+        /// <summary>
+        /// Replaces the placeholders in the link (Target). This method is for internal purposes only.
+        /// </summary>
+        public string ResolveTarget(string rowPrefix)
         {
             Dictionary<string, string> replacements = GetReplacements(Target, rowPrefix);
 
@@ -134,7 +217,10 @@ namespace DataTables.MVC.Control.Models
             return result;
         }
 
-        public string ResolvedInnerHtml(string rowPrefix)
+        /// <summary>
+        /// Replaces the placeholders in the linked text (InnerHtml). This method is for internal purposes only.
+        /// </summary>
+        public string ResolveInnerHtml(string rowPrefix)
         {
             Dictionary<string, string> replacements = GetReplacements(InnerHtml, rowPrefix);
 

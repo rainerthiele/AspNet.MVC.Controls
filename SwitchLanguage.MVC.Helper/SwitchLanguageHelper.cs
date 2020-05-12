@@ -9,8 +9,19 @@ using System.Web.Routing;
 
 namespace SwitchLanguage.MVC.Helper
 {
+    /// <summary>
+    /// An url helper extension to create links to switch the language.
+    /// </summary>
     public static class SwitchLanguageHelper
     {
+        /// <summary>
+        /// Generates a url that points to the current page and also appends the language parameter as a query string.
+        /// The name of the parameter is set via the properties of the  <see cref="SwitchLanguageFilter"/>.
+        /// <param name="cultureName">
+        /// Contains the language to be switched to. This can either be a valid CultureName (e.g. "en-US") or a valid <c>TwoLetterISOLanguageName</c> (e.g. "en"). This CultureName 
+        /// is set via the <c>SwitchLanguageFilter</c> in the <c>CurrentUICulture</c> of the CurrentThread.
+        /// </param>
+        /// </summary>
         public static string SwitchLanguageUrl(this UrlHelper url, string cultureName)
         {
             RouteValueDictionary routeValues = CreateLanguageRouteValues(url, cultureName);

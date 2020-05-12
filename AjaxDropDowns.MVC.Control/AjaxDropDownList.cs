@@ -14,30 +14,56 @@ namespace AjaxDropDowns.MVC.Control
 {
     // @Html.AjaxDropDownListFor(m => m.Id, "1234", "/EmployeeGroup/List", new SelectListItem() { Text = "", Value = "" } )
 
+        /// <summary>
+        /// A html helper to create drop down boxes which get their options via ajax.
+        /// </summary>
     public static class AjaxDropDownList
     {
+        /// <summary>
+        ///  <see cref="AjaxDropDownList.AjaxDropDownListFor{TModel, TProperty}(HtmlHelper{TModel}, Expression{Func{TModel, TProperty}}, string, SelectListItem, object)"/>
+        /// </summary>
         public static IHtmlString AjaxDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl, object htmlAttributes)
         {
             var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
             return AjaxDropDownListFor(htmlHelper, expression, readUrl, null, attributes);
         }
 
+        /// <summary>
+        ///  <see cref="AjaxDropDownList.AjaxDropDownListFor{TModel, TProperty}(HtmlHelper{TModel}, Expression{Func{TModel, TProperty}}, string, SelectListItem, object)"/>
+        /// </summary>
         public static IHtmlString AjaxDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl)
         {
             return AjaxDropDownListFor(htmlHelper, expression, readUrl, null, null);
         }
 
+        /// <summary>
+        /// Creates a drop down box which gets its options via ajax.
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="htmlHelper">A reference to the html helper.</param>
+        /// <param name="expression">An expression to identify the value from the model.</param>
+        /// <param name="readUrl">An url to read the drop down options from. The return of the url must be an array of text / value pairs in Json format.</param>
+        /// <param name="optionItem">A <c>SelectListItem</c>, which contains the first entry in the options list (e.g. "Please select").</param>
+        /// <param name="htmlAttributes">Html attributes to be added to the drop down.</param>
+        /// <returns></returns>
         public static IHtmlString AjaxDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl, SelectListItem optionItem, object htmlAttributes)
         {
             var attributes = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
             return AjaxDropDownListFor(htmlHelper, expression, readUrl, optionItem, attributes);
         }
 
+        /// <summary>
+        ///  <see cref="AjaxDropDownList.AjaxDropDownListFor{TModel, TProperty}(HtmlHelper{TModel}, Expression{Func{TModel, TProperty}}, string, SelectListItem, object)"/>
+        /// </summary>
         public static IHtmlString AjaxDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl, SelectListItem optionItem)
         {
             return AjaxDropDownListFor(htmlHelper, expression, readUrl, optionItem, null);
         }
 
+        /// <summary>
+        ///  <see cref="AjaxDropDownList.AjaxDropDownListFor{TModel, TProperty}(HtmlHelper{TModel}, Expression{Func{TModel, TProperty}}, string, SelectListItem, object)"/>
+        /// </summary>
         public static IHtmlString AjaxDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string readUrl, SelectListItem optionItem, RouteValueDictionary htmlAttributes)
         {
             var metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);

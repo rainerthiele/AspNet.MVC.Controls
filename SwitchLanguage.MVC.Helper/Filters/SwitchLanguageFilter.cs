@@ -10,10 +10,33 @@ using System.Web.Mvc;
 
 namespace SwitchLanguage.MVC.Helper.Filters
 {
+    /// <summary>
+    /// The class SwitchLanguageFilter implements the interface <c>IActionFilter</c>; in particular the method <c>OnActionExecuting</c>. That means that the filter
+    /// every time an action is called.
+    /// <para>The filter searches for information about the selected language in three stages: in the QueryString after the language parameter.If not found,
+    /// in the language cookie.If not found,  the browser language. </para>
+    /// <para>The language found is then saved in a cookie. This ensures that the language is retained the next time an action is called. Furthermore
+    /// it is written into the <c>CurrentThread.CurrentUICulture</c>.This means that it is available throughout the processing of the request.</para>
+    /// <para>The filter must be added to the <c>GlobalFilterCollection</c>. This is usually done in the static method <c> RegisterGlobalFilters</c> in
+    /// the class <c>FilterConfig</c> (to be found in the "App_Start" folder of the web project).</para>>
+    /// </summary>
     public class SwitchLanguageFilter : IActionFilter
     {
+        /// <value>
+        /// The name of the language parameter in the QueryString.
+        /// </value>
         public string LanguageParameterName { get; set; }
+        
+        /// <value>
+        /// The name of the cookie in which the language for the next request and possibly for the next session (depending on the setting of the <c>LanguageCookieExpirationDays</c> value)
+        /// is saved.
+        /// </value>
         public string LanguageCookieName { get; set; }
+
+        /// <value>
+        /// The duration of the language cookie in days. By default, zero days are given here. I. e. the cookie is discarded at the end of the session. A higher value means that the user will 
+        /// find his or her selected language when visiting the page again.
+        /// </value>
         public int LanguageCookieExpirationDays { get; set; }
 
         public SwitchLanguageFilter()

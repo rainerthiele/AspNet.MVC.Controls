@@ -8,10 +8,19 @@ using System.Web.Mvc;
 
 namespace AjaxDropDowns.MVC.Control.ActionResults
 {
+    /// <summary>
+    /// The <c>ScriptDropDownResult</c> generates a JavaScript code including the
+    /// script tags from a list of <c>SelectListItem</c>, which is an array with the
+    /// Contains text / value pairs that appear as options in the DropDownList.
+    /// </summary>
     public class ScriptDropDownResult : ActionResult
     {
         private IEnumerable<SelectListItem> _items;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="items">A list of <c>SelectListItem</c>, which contains the options of the DropDownList.</param>
         public ScriptDropDownResult(IEnumerable<SelectListItem> items)
         {
             _items = items;

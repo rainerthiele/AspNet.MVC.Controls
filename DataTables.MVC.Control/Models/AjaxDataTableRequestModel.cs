@@ -9,15 +9,46 @@ using System.Web.Mvc;
 
 namespace DataTables.MVC.Control.Models
 {
+    /// <summary>
+    /// Represents an ajax request from the data table to the server if the parameter <c>ServerSide = true</c> 
+                /// is in the <see cref="TableConfiguration"/>.
+    /// </summary>
     public class AjaxDataTableRequestModel
     {
+        /// <summary>
+        /// An integer value that counts the number of requests. I. e., each time you page, sort, etc., this value is increased by one. 
+        /// </summary>
         public int Draw { get; set; }
+
+        /// <summary>
+        /// The zero-based index of the first record to return.
+        /// </summary>
         public int Start { get; set; }
+
+        /// <summary>
+        /// The number of records to return.
+        /// </summary>
         public int Length { get; set; }
 
+        /// <summary>
+        /// The search term for which the data should be searched.
+        /// </summary>
         public string SearchValue { get; set; }
+
+        /// <summary>
+        /// The names of the columns to search for the search term. The list contains all columns that have the parameter <c>Searchable = true</c>  
+        /// according to their <see cref="ColumnConfiguration"/>.
+        /// </summary>
         public string[] SearchColumns { get; set; }
+
+        /// <summary>
+        /// The name of the column by which to sort the result.
+        /// </summary>
         public string OrderColumn { get; set; }
+
+        /// <summary>
+        /// The sort direction by which the result should be sorted.
+        /// </summary>
         public OrderType OrderDirection { get; set; }
     }
 

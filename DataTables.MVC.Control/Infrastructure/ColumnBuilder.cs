@@ -8,6 +8,9 @@ using System.Web.Mvc;
 
 namespace DataTables.MVC.Control.Infrastructure
 {
+    /// <summary>
+    /// Creates the Html code for a single column of a data table.
+    /// </summary>
     public class ColumnBuilder
     {
         private TagBuilder tagbuilder;
@@ -27,7 +30,7 @@ namespace DataTables.MVC.Control.Infrastructure
             tagbuilder.MergeAttribute("data-data", dataProperty);
         }
 
-        public ColumnBuilder(ColumnConfiguration configuration, string dataProperty, NumericColumnConfiguration numericConfiguration)
+        public ColumnBuilder(ColumnConfiguration configuration, string dataProperty, NumericConfiguration numericConfiguration)
         {
             tagbuilder = new TagBuilder("th");
             RenderFunction = $"$.fn.dataTable.render.number('{numericConfiguration.ThousandsSeperator}', '{numericConfiguration.DecimalSign}', {numericConfiguration.DecimalPlaces}, '{numericConfiguration.ValuePrependix}','{numericConfiguration.ValueAppendix}')";
@@ -36,7 +39,7 @@ namespace DataTables.MVC.Control.Infrastructure
             tagbuilder.MergeAttribute("data-data", dataProperty);
         }
 
-        public ColumnBuilder(ColumnConfiguration configuration, string dataProperty, DateTimeColumnConfiguration dateTimeConfiguration)
+        public ColumnBuilder(ColumnConfiguration configuration, string dataProperty, DateTimeConfiguration dateTimeConfiguration)
         {
             tagbuilder = new TagBuilder("th");
             RenderFunction = "function(d, t) { return t === 'sort' ? moment(d).format('YYYYMMDDHHmmss') :  moment(d).format('" + dateTimeConfiguration.DateTimeFormat + "'); }";
@@ -56,21 +59,21 @@ namespace DataTables.MVC.Control.Infrastructure
             {
                 if (linkConfiguration.TagType == TagType.Anchor)
                     link.Attributes.Add("href", "#");
-                link.Attributes.Add("onclick", $"{linkConfiguration.ResolvedTarget("r")}; return false;");
+                link.Attributes.Add("onclick", $"{linkConfiguration.ResolveTarget("r")}; return false;");
             }
             else
             {
                 if (linkConfiguration.TagType == TagType.Anchor)
-                    link.Attributes.Add("href", linkConfiguration.ResolvedTarget("r"));
+                    link.Attributes.Add("href", linkConfiguration.ResolveTarget("r"));
                 else
-                    link.Attributes.Add("onclick", $"window.location.href=\\'{linkConfiguration.ResolvedTarget("r")}\\';");
+                    link.Attributes.Add("onclick", $"window.location.href=\\'{linkConfiguration.ResolveTarget("r")}\\';");
             }
 
             StringBuilder function = new StringBuilder("function (d, t, r) { return t === 'sort' ? d : ");
 
             function.Append($"'{link.ToString(TagRenderMode.StartTag).Replace("&#39;","'")}' +");
 
-            function.Append($"'{linkConfiguration.ResolvedInnerHtml("r")}'");
+            function.Append($"'{linkConfiguration.ResolveInnerHtml("r")}'");
 
             function.Append($" + '{link.ToString(TagRenderMode.EndTag)}';}}");
 

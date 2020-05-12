@@ -15,22 +15,22 @@
     initialize and configure the table.
 </p>
 
-@(Html.AjaxDataTable<ArticleViewModel>(new TableConfiguration() { AjaxReadUrl = Url.Action("List"),
-}, new { style = "width:100%" })
-                    .Column(c => c.Id)
-                    .Column(c => c.Name)
-                    .NumericColumn(c => c.Price, new ColumnConfiguration() { ClassName = "text-right" }, new NumericColumnConfiguration() { DecimalPlaces = 2, DecimalSign = ",", ThousandsSeperator = ".", ValueAppendix = " €" })
-                    .DateTimeColumn(c => c.ReleaseDate, new DateTimeColumnConfiguration("DD.MM.YYYY"))
-                    .LinkColumn(c => c.Id, new ColumnConfiguration() { Title = "Link" }, new LinkConfiguration()
-                    {
-                        CssClass = "test",
-                        InnerHtml = "<span>{Name} ({Id})</span>",
-                        LinkType = LinkType.Script,
-                        TagType =  TagType.Anchor,
-                        Target = "testFunction({Name},{Id})"
+@{Html.AjaxDataTable<ArticleViewModel>(new TableConfiguration() { AjaxReadUrl = Url.Action("List"), HasOrdering = false, HasPaging = false,
+        }, new { style = "width:100%" })
+                                .Column(c => c.Id)
+                                .Column(c => c.Name)
+                                .NumericColumn(c => c.Price, new ColumnConfiguration() { ClassName = "text-right" }, new NumericConfiguration() { DecimalPlaces = 2, DecimalSign = ",", ThousandsSeperator = ".", ValueAppendix = " €" })
+                                .DateTimeColumn(c => c.ReleaseDate, new DateTimeConfiguration("DD.MM.YYYY"))
+                                .LinkColumn(c => c.Id, new ColumnConfiguration() { Title = "Link" }, new LinkConfiguration()
+                                {
+                                    CssClass = "test",
+                                    InnerHtml = "<span>{Name} ({Id})</span>",
+                                    LinkType = LinkType.Script,
+                                    TagType = TagType.Anchor,
+                                    Target = "testFunction({Name},{Id})"
 
-                    })
-                .Render())
+                                })
+                            .Render())}
 
 <script>
     function testFunction(a, b) {
