@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using System.Threading
+@using SwitchLanguage.MVC.Helper
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,6 +29,26 @@
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "DataTableServer")">AjaxDataTable (server side)</a>
                     </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    @if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName.ToLower() == "de")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.SwitchLanguageUrl("de")"><b>DE</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.SwitchLanguageUrl("en")">EN</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.SwitchLanguageUrl("de")">DE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.SwitchLanguageUrl("en")"><b>EN</b></a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

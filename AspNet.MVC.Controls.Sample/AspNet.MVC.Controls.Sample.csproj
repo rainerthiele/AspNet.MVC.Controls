@@ -320,6 +320,10 @@
       <Project>{87e243b2-d391-47ee-9e9c-0798a322f3a0}</Project>
       <Name>DataTables.MVC.Control</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SwitchLanguage.MVC.Helper\SwitchLanguage.MVC.Helper.csproj">
+      <Project>{2074baf3-469f-4de4-be47-8a872678a894}</Project>
+      <Name>SwitchLanguage.MVC.Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

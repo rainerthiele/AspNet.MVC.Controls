@@ -13,10 +13,10 @@ namespace AspNet.MVC.Controls.Sample.Models
         [Display(Name = "Artikelname")]
         public String Name { get; set; }
        
-        [Display(Name = "Preis")]
+        [Display(Name = "Price")]
         public Decimal Price { get; set; }
    
-        [Display(Name = "Erscheinungsdatum")]
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
     }
 }

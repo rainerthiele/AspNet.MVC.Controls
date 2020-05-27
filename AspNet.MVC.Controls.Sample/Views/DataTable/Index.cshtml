@@ -15,22 +15,32 @@
     initialize and configure the table.
 </p>
 
-@{Html.AjaxDataTable<ArticleViewModel>(new TableConfiguration() { AjaxReadUrl = Url.Action("List"), HasOrdering = false, HasPaging = false,
-        }, new { style = "width:100%" })
-                                .Column(c => c.Id)
-                                .Column(c => c.Name)
-                                .NumericColumn(c => c.Price, new ColumnConfiguration() { ClassName = "text-right" }, new NumericConfiguration() { DecimalPlaces = 2, DecimalSign = ",", ThousandsSeperator = ".", ValueAppendix = " €" })
-                                .DateTimeColumn(c => c.ReleaseDate, new DateTimeConfiguration("DD.MM.YYYY"))
-                                .LinkColumn(c => c.Id, new ColumnConfiguration() { Title = "Link" }, new LinkConfiguration()
-                                {
-                                    CssClass = "test",
-                                    InnerHtml = "<span>{Name} ({Id})</span>",
-                                    LinkType = LinkType.Script,
-                                    TagType = TagType.Anchor,
-                                    Target = "testFunction({Name},{Id})"
-
-                                })
-                            .Render())}
+@(Html.AjaxDataTable<ArticleViewModel>(
+          new TableConfiguration()
+          {
+              AjaxReadUrl = Url.Action("List")
+          })
+          .Column(c => c.Id)
+          .LinkColumn(c => c.Id, new ColumnConfiguration() { Title = "Title" },  new LinkConfiguration()
+          {
+              InnerHtml = "<span>{Name}</span>",
+              LinkType = LinkType.Script,
+              TagType = TagType.Anchor,
+              Target = "testFunction({Id})"
+          })
+          .NumericColumn(c => c.Price, new ColumnConfiguration()
+          {
+              ClassName = "text-right"
+          }, new NumericConfiguration()
+          {
+              DecimalPlaces = 2,
+              DecimalSign = ",",
+              ThousandsSeperator = ".",
+              ValueAppendix = " €"
+          })
+          .DateTimeColumn(c => c.ReleaseDate, new DateTimeConfiguration("DD.MM.YYYY"))
+          .Render()
+)
 
 <script>
     function testFunction(a, b) {

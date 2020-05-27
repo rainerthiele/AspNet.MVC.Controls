@@ -2,7 +2,7 @@ Nuget.exe needs to run from within your project folder.
 
 If your library uses any packages, you'll need to tell Nuget where they are on your PC. Your packages folder is typically in the root folder of your Solution, if you're using Visual Studio.
 
-nuget.exe config -Set repositoryPath="\full-path-to-your-packages-folder\"
+nuget.exe config -Set repositoryPath="C:\Users\Rainer\source\repos\AspNet.MVC.Controls\packages"
 
 Create package
 

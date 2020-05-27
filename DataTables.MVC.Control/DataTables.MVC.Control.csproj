@@ -99,6 +99,7 @@
     </None>
     <None Include="DataTables.MVC.Control.nuspec" />
     <None Include="packages.config" />
+    <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Scripts.resx">

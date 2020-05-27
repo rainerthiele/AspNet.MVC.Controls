@@ -49,6 +49,7 @@
     <Compile Include="SwitchLanguageHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Readme.md" />
     <None Include="SwitchLanguage.MVC.Helper.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

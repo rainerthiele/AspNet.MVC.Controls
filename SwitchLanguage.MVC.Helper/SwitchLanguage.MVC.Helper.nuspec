@@ -2,13 +2,13 @@
 <package  xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>    
     <id>SwitchLanguage.MVC.Helper</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <title>SwitchLanguage.MVC.Helper</title>
     <authors>Rainer Thiele</authors>
     <owners>rainerthiele</owners>
     <license type="expression">MIT</license>
-    <projectUrl>https://github.com/rainerthiele/AspNet.MVC.Controls</projectUrl>
-    <!-- <iconUrl></iconUrl> -->
+	  <projectUrl>http://net.rainerthiele.de/Home/Page/SwitchLanguage/Index</projectUrl>
+	  <!-- <iconUrl></iconUrl> -->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A url helper to create links to change your websites language and an action filter to inject the language into the thread current UI culture.</description>
     <releaseNotes></releaseNotes>

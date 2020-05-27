@@ -35,7 +35,7 @@ namespace DataTables.MVC.Control.Infrastructure
         /// </summary>
         public TableBuilder<TModel> LinkColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, LinkConfiguration linkConfiguration)
         {
-            columnBuilders.Add(new ColumnBuilder(new ColumnConfiguration() { Orderable = false }, GetMemberName(expression), linkConfiguration));
+            columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, new ColumnConfiguration()), GetMemberName(expression), linkConfiguration));
 
             return this;
         }
@@ -50,7 +50,7 @@ namespace DataTables.MVC.Control.Infrastructure
         /// <returns></returns>
         public TableBuilder<TModel> LinkColumn<TProperty>(Expression<Func<TModel, TProperty>> expression, ColumnConfiguration configuration, LinkConfiguration linkConfiguration)
         {
-            columnBuilders.Add(new ColumnBuilder(configuration, GetMemberName(expression), linkConfiguration));
+            columnBuilders.Add(new ColumnBuilder(SetTitleToConfiguration(expression, configuration), GetMemberName(expression), linkConfiguration));
 
             return this;
         }

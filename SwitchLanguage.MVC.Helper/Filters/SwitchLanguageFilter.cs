@@ -10,6 +10,12 @@ using System.Web.Mvc;
 
 namespace SwitchLanguage.MVC.Helper.Filters
 {
+    public enum LanguageParameterType
+    {
+        QueryString,
+        RouteValue
+    }
+
     /// <summary>
     /// The class SwitchLanguageFilter implements the interface <c>IActionFilter</c>; in particular the method <c>OnActionExecuting</c>. That means that the filter
     /// every time an action is called.
@@ -39,11 +45,17 @@ namespace SwitchLanguage.MVC.Helper.Filters
         /// </value>
         public int LanguageCookieExpirationDays { get; set; }
 
+        /// <value>
+        /// Sets where the language parameter should be determined.
+        /// </value>
+        public LanguageParameterType LanguageParameterType { get; set; }
+
         public SwitchLanguageFilter()
         {
             LanguageParameterName = "language";
             LanguageCookieName = "CurrentUICulture";
             LanguageCookieExpirationDays = 0;
+            LanguageParameterType = LanguageParameterType.QueryString;
         }
 
         public virtual void OnActionExecuting(ActionExecutingContext filterContext)
@@ -51,10 +63,15 @@ namespace SwitchLanguage.MVC.Helper.Filters
             // load the culture info from the cookie
             var cookie = filterContext.HttpContext.Request.Cookies[LanguageCookieName];
 
-            if ((filterContext.HttpContext.Request.QueryString[LanguageParameterName] != null) && !string.IsNullOrWhiteSpace(filterContext.HttpContext.Request.QueryString[LanguageParameterName].ToString()))
+            if ((LanguageParameterType == LanguageParameterType.QueryString) && (filterContext.HttpContext.Request.QueryString[LanguageParameterName] != null) && !string.IsNullOrWhiteSpace(filterContext.HttpContext.Request.QueryString[LanguageParameterName].ToString()))
+            {
+                // set the culture from the query string
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(filterContext.HttpContext.Request.QueryString[LanguageParameterName].ToString());
+            }
+            else if ((LanguageParameterType == LanguageParameterType.RouteValue) && (filterContext.RouteData.Values[LanguageParameterName] != null) && !string.IsNullOrWhiteSpace(filterContext.RouteData.Values[LanguageParameterName].ToString()))
             {
                 // set the culture from the route data (url)
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(filterContext.HttpContext.Request.QueryString[LanguageParameterName].ToString());
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(filterContext.RouteData.Values[LanguageParameterName].ToString());
             }
             else if ((cookie != null))
             {
